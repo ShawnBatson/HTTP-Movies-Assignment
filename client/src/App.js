@@ -4,6 +4,7 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import UpdateForm from "./Movies/UpdateForm";
+import AddMovie from "./Movies/AddMovie";
 import axios from "axios";
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
           />
         )}
       />
+      <AddMovie />
     </>
   );
 };
