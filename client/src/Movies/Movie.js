@@ -9,6 +9,19 @@ function Movie({ addToSavedList }) {
   const [movie, setMovie] = useState(null);
   const match = useRouteMatch();
 
+  const handleDelete = event => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/api/movies/${movie.id}`)
+      .then(res => {
+        console.log("this is in the delete request", res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    window.location.href = `/`;
+  };
+
   const fetchMovie = id => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
@@ -42,6 +55,7 @@ function Movie({ addToSavedList }) {
       >
         Update
       </button>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 }

@@ -42,6 +42,19 @@ const UpdateForm = props => {
     window.location.href = `/movies/${movie.id}`;
   };
 
+  const handleDelete = event => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost:5000/api/movies${movie.id}`, movie)
+      .then(res => {
+        console.log("this is in the delete request", res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    window.location.href = `/movies`;
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -78,6 +91,7 @@ const UpdateForm = props => {
           value={movie.stars}
         />
         <button>Update</button>
+        <button onClick={handleDelete}>Delete</button>
       </form>
     </div>
   );
