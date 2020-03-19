@@ -16,6 +16,7 @@ const AddMovie = () => {
   };
 
   const handleSubmit = event => {
+    event.preventDefault();
     axios
       .post(`http://localhost:5000/api/movies`, newMovie)
       .then(res => {
@@ -26,6 +27,7 @@ const AddMovie = () => {
       .catch(err => {
         console.log(err);
       });
+    window.location.href = `/`;
   };
   return (
     <>
