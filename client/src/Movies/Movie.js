@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 import UpdateForm from "./UpdateForm";
 import "../index.css";
 
-function Movie(props, { addToSavedList }) {
+function Movie({ addToSavedList }) {
   const [movie, setMovie] = useState(null);
   const match = useRouteMatch();
 
@@ -20,13 +20,13 @@ function Movie(props, { addToSavedList }) {
     addToSavedList(movie);
   };
 
-  const updateMovie = () => {};
+  const updateMovie = () => {
+    console.log("in the updateMovie");
+  };
   console.log("in the updateMovie");
   useEffect(() => {
     fetchMovie(match.params.id);
   }, [match.params.id]);
-
-  const handleUpdate = () => {};
 
   if (!movie) {
     return <div>Loading movie information...</div>;
