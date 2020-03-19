@@ -20,9 +20,6 @@ function Movie({ addToSavedList }) {
     addToSavedList(movie);
   };
 
-  const updateMovie = () => {
-    console.log("in the updateMovie");
-  };
   console.log("in the updateMovie");
   useEffect(() => {
     fetchMovie(match.params.id);
@@ -32,11 +29,6 @@ function Movie({ addToSavedList }) {
     return <div>Loading movie information...</div>;
   }
 
-  // const routeChange = () => {
-  //   const path = `/update-movie/${movie.id}`;
-  //   const history = useHistory();
-  //   history.push(path);
-  // };
   return (
     <div className="save-wrapper">
       <MovieCard movie={movie} />

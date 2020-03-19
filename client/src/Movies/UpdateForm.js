@@ -3,7 +3,6 @@ import axios from "axios";
 
 const UpdateForm = props => {
   const [movie, setMovie] = useState({
-    id: 0,
     title: "",
     director: "",
     metascore: 0,
@@ -12,14 +11,14 @@ const UpdateForm = props => {
 
   useEffect(() => {
     const movieToUpdate = props.movieList.find(movie => {
-      return `${movie.id}` === props.match.params.id;
+      return String(movie.id) === props.match.params.id;
     });
 
     if (movieToUpdate) {
       setMovie(movieToUpdate);
     }
     console.log("movieToUpdate in updateform", movieToUpdate);
-  }, [props.movie, props.match.params.id]);
+  }, [props.movieList, props.match.params.id]);
 
   const changeHandler = event => {
     setMovie({ ...movie, [event.target.name]: event.target.value });
@@ -33,12 +32,14 @@ const UpdateForm = props => {
     axios
       .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
       .then(res => {
-        console.log(res);
-        props.updateMovie(res.data);
+        console.log("this is the put request", res.data);
+        //dont do this V V V  This messes up the original array and sets it to an object V V V
+        // props.updateMovie(res.data);
       })
       .catch(err => {
         console.log(err);
       });
+    window.location.href = `/movies/${movie.id}`;
   };
 
   return (
@@ -73,7 +74,7 @@ const UpdateForm = props => {
           type="text"
           name="stars"
           onChange={changeHandler}
-          placeholder="title"
+          placeholder="stars"
           value={movie.stars}
         />
         <button>Update</button>
