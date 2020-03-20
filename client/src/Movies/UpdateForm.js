@@ -45,7 +45,7 @@ const UpdateForm = props => {
   const handleDelete = event => {
     event.preventDefault();
     axios
-      .delete(`http://localhost:5000/api/movies${movie.id}`, movie)
+      .delete(`http://localhost:5000/api/movies/${movie.id}`, movie)
       .then(res => {
         console.log("this is in the delete request", res.data);
       })
